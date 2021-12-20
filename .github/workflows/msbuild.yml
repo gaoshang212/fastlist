@@ -38,13 +38,13 @@ jobs:
         working-directory: ${{env.GITHUB_WORKSPACE}}
         run: msbuild /m /p:Configuration=${{env.BUILD_CONFIGURATION}} ${{env.SOLUTION_FILE_PATH}} /p:Platform=x86
     
-    - name: Release
-      uses: softprops/action-gh-release@v1
-      with:
-        files: |
-          Release/fastlist-x86.exe
-          Release/fastlist-x64.exe
-        token: ${{ secrets.TOKEN }}
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            Release/fastlist-x86.exe
+            Release/fastlist-x64.exe
+          token: ${{ secrets.TOKEN }}
       
 
       
