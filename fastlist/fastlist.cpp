@@ -54,10 +54,16 @@ int main(int argc, char* argv[]) {
 	options.allow_unrecognised_options()
 		.add_options()
 		("p,pid", "a process id", cxxopts::value<uint32_t>())
-		("ppid", "a process id", cxxopts::value<uint32_t>())
-		("n,name", "a process name", cxxopts::value<std::string>());
+		("ppid", "a parent process id", cxxopts::value<uint32_t>())
+		("n,name", "a process name", cxxopts::value<std::string>())
+		("h,help", "Print help and exit.");
 
 	auto result = options.parse(argc, argv);
+	// help
+	if (result.count("help")) {
+		std::cout << options.help({ "" }) << std::endl;
+		exit(0);
+	}
 
 
 	HANDLE snap = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
